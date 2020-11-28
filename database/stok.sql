@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2020 at 01:03 PM
+-- Generation Time: Nov 28, 2020 at 04:30 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -33,6 +33,14 @@ CREATE TABLE `tb_barang` (
   `stok` int(11) NOT NULL,
   `createDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_barang`
+--
+
+INSERT INTO `tb_barang` (`id`, `kode`, `stok`, `createDate`) VALUES
+(1, '6010', 57, '2020-11-28 22:28:01'),
+(2, '6011', 22, '2020-11-28 22:28:18');
 
 -- --------------------------------------------------------
 
@@ -100,7 +108,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_riwayat`

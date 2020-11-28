@@ -22,14 +22,14 @@
         </li>
 
         <li class="treeview">
-          <a href="<?php echo base_url('') ?>">
-            <i class="fa fa-envelope"></i> <span>Stok Barang</span>
+          <a href="<?php echo base_url('index.php/admin/barang') ?>">
+            <i class="fa fa-book"></i> <span>Stok Barang</span>
           </a>
         </li>
 
         <li class="treeview">
           <a href="<?php echo base_url('') ?>">
-            <i class="fa fa-inbox"></i> <span>Riwayah Barang</span>
+            <i class="fa fa-history"></i> <span>Riwayah Barang</span>
           </a>
         </li>
 
