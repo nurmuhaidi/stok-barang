@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Riwayat
-        <small>Riwayat</small>
+        Riwayat Barang
+        <small>Riwayat Barang</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -88,7 +88,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel"><div class="fa fa-print"></div> Cetak Data</h4>
         </div>
-        <form action="<?php echo base_url('index.php/admin/barang/print') ?>" method="POST">
+        <form action="<?php echo base_url('index.php/admin/riwayat/rekap') ?>" method="GET">
           <div class="modal-body">
             <div class="row">
                 <div class="col-md-6">
@@ -122,7 +122,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel"><div class="fa fa-download"></div> Export Excel</h4>
         </div>
-        <form action="<?php echo base_url('index.php/admin/barang/print') ?>" method="POST">
+        <form action="<?php echo base_url('index.php/admin/riwayat/exportExcel') ?>" method="GET">
           <div class="modal-body">
             <div class="row">
                 <div class="col-md-6">
@@ -170,13 +170,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Jumlah</label>
-                                <input type="text" class="form-control" name="stok" value="<?= $rwt->jumlah ?>">
+                                <input type="text" class="form-control" name="jumlah" value="<?= $rwt->jumlah ?>">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Jenis</label>
-                        <input type="hidden" name="id" value="<?php echo $rwt->id; ?>">
                         <select class="form-control" name="jenis" required>
                             <option value="<?= $rwt->jenis ?>"><?= $rwt->jenis ?></option>
                             <option value="">-- Pilih Jenis --</option>

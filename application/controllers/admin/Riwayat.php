@@ -61,4 +61,44 @@ class Riwayat extends CI_Controller {
         $this->session->set_flashdata('pesan', 'Data berhasil dihapus!');
         redirect('index.php/admin/riwayat');
     }
+
+    public function update()
+    {
+        $id = $this->input->post('id');
+        $jenis = $this->input->post('jenis');
+        $jumlah = $this->input->post('jumlah');
+
+        $where = array('id' => $id );
+        
+        $data = array(
+            'jenis' => $jenis,
+            'jumlah' => $jumlah, 
+        );
+
+        $this->m_model->update($where, $data, 'tb_riwayat');
+        $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
+        redirect('index.php/admin/riwayat');
+    }
+
+    public function rekap()
+    {
+        $tgl_awal = $this->input->get('tgl_awal');
+        $tgl_akhir = $this->input->get('tgl_akhir');
+
+        $data['title'] = 'Rekap Data';
+        $data['rekapData'] = $this->db->query("SELECT * FROM tb_riwayat WHERE createDate Between '".$tgl_awal."' AND '".$tgl_akhir."' ")->result();
+
+        $this->load->view('admin/rekapData', $data);
+    }
+
+    public function exportExcel()
+    {
+        $tgl_awal = $this->input->get('tgl_awal');
+        $tgl_akhir = $this->input->get('tgl_akhir');
+
+        $data['title'] = 'Rekap Data';
+        $data['rekapData'] = $this->db->query("SELECT * FROM tb_riwayat WHERE createDate Between '".$tgl_awal."' AND '".$tgl_akhir."' ")->result();
+
+        $this->load->view('admin/exportexcel', $data);
+    }
 }
