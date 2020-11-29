@@ -28,7 +28,7 @@
                 foreach ($manajemenUser as $usr) {
             ?>
                 <div class="col-md-3">
-                    <div class="box box-success">
+                    <div class="box box-danger">
                         <div class="box-body box-profile">
                             <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('assets') ?>/dist/img/avatar4.png" alt="User profile picture">
 

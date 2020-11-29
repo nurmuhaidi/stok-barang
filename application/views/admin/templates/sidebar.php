@@ -48,7 +48,7 @@
         </li>
 
         <li class="treeview">
-          <a href="<?php echo base_url('') ?>">
+          <a href="<?php echo base_url('index.php/admin/profile') ?>">
             <i class="fa fa-user"></i> <span>Profile</span>
           </a>
         </li>
