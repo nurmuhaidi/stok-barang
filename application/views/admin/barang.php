@@ -22,6 +22,11 @@
             <div class="fa fa-plus"></div> Tambah Data
         </div>
 
+        <!-- Tombol Cetak Data -->
+        <button class="btn btn-primary" data-toggle="modal" data-target="#cetakData">
+            <div class="fa fa-print"></div> Cetak Data
+        </button>
+
         <!-- Tabel Data -->
         <div class="box box-danger" style="margin-top: 15px">
             <div class="box-body">
@@ -45,12 +50,19 @@
                                     <td><?php echo $brg->kode; ?></td>
                                     <td><?php echo $brg->stok; ?></td>
                                     <td>
-                                        <button class="btn btn-success btn-sm">
+                                        <!-- Tombol Kelola -->
+                                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#kelola<?= $brg->id ?>">
                                             <div class="fa fa-plus-square"></div> Kelola
                                         </button>
+                                        <!-- Tombol History -->
+                                        <a href="" class="btn btn-primary btn-sm">
+                                            <div class="fa fa-history"></div> History
+                                        </a>
+                                        <!-- Tombol Delete -->
                                         <a href="<?php echo base_url('index.php/admin/barang/delete/').$brg->id; ?>" class="btn btn-danger btn-sm tombol-yakin" data-isiData="Ingin menghapus data ini!">
                                             <div class="fa fa-trash"></div> Delete
                                         </a>
+                                        <!-- Tombol Edit -->
                                         <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editData<?php echo $brg->id; ?>">
                                             <div class="fa fa-edit"></div> Edit
                                         </button>
@@ -121,6 +133,45 @@
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
                     <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> update</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  <?php } ?>
+
+  <!-- Modal Edit Data -->
+  <?php foreach ($barang as $brg) { ?>
+    <div class="modal fade" id="kelola<?= $brg->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><div class="fa fa-edit"></div> Kelola Data</h4>
+                </div>
+                <form action="<?php echo base_url('index.php/admin/barang/insert_kelola') ?>" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Kode</label>
+                        <input type="text" class="form-control" name="kode" value="<?= $brg->kode ?>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis</label>
+                        <input type="hidden" name="id" value="<?php echo $brg->id; ?>">
+                        <select class="form-control" name="jenis" required>
+                            <option value="">-- Pilih Jenis --</option>
+                            <option value="Masuk">Masuk</option>
+                            <option value="Keluar">Keluar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah</label>
+                        <input type="number" class="form-control" name="jumlah" placeholder="Jumlah" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
+                    <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> simpan</button>
                 </div>
                 </form>
             </div>

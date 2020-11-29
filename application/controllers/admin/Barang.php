@@ -15,6 +15,8 @@ class Barang extends CI_Controller {
     {
         $data['title'] = 'Stok Barang';
         $data['barang'] = $this->m_model->get('tb_barang')->result();
+        $data['riwayat'] = $this->m_model->get('tb_riwayat')->result();
+        
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar');
         $this->load->view('admin/barang', $data);
@@ -44,6 +46,26 @@ class Barang extends CI_Controller {
         );
 
         $this->m_model->insert($data, 'tb_barang');
+        $this->session->set_flashdata('pesan', 'Data berhasil ditambahkan!');
+        redirect('index.php/admin/barang');
+    }
+
+    public function insert_kelola()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $kode       = $_POST['kode'];
+        $jenis       = $_POST['jenis'];
+        $jumlah       = $_POST['jumlah'];
+        $createDate = date('Y-m-d H:i:s');
+
+        $data = array(
+            'kode'      => $kode,
+            'jumlah'      => $jumlah,
+            'jenis'      => $jenis,
+            'createDate' => $createDate
+        );
+
+        $this->m_model->insert($data, 'tb_riwayat');
         $this->session->set_flashdata('pesan', 'Data berhasil ditambahkan!');
         redirect('index.php/admin/barang');
     }

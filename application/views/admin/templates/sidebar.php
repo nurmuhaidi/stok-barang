@@ -28,8 +28,8 @@
         </li>
 
         <li class="treeview">
-          <a href="<?php echo base_url('') ?>">
-            <i class="fa fa-history"></i> <span>Riwayah Barang</span>
+          <a href="<?php echo base_url('index.php/admin/riwayat') ?>">
+            <i class="fa fa-history"></i> <span>Riwayat Barang</span>
           </a>
         </li>
 
