@@ -32,15 +32,37 @@
 <body class="hold-transition">
     <div class="container">
         <!-- Judul Dokumen -->
-        <h1 style="text-align: center">Rekap Data</h1>
+        <h1 style="text-align: center">Riwayat Barang</h1>
 
-        <table>
+        <table width="100%">
             <tr>
+                <td width="100px">Jumlah</td>
+                <td width="15px">:</td>
+                <td>
+                  <?php
+                    foreach ($jumlah as $jml) {
+                      echo $jml->jumlahData;
+                    }
+                  ?>
+                </td>
+                <td width="30%"></td>
                 <td width="100px">Dicetak Oleh</td>
                 <td width="15px">:</td>
                 <td> <?php echo $this->session->userdata('nama'); ?> </td>
             </tr>
             <tr>
+                <td>Tanggal</td>
+                <td>:</td>
+                <td>
+                  <?php
+                    if ($tgl_awal == $tgl_akhir) {
+                      echo date('d-M-Y', strtotime($tgl_awal));
+                    } else {
+                      echo date('d-M-Y', strtotime($tgl_awal)) . ' s/d ' . date('d-M-Y', strtotime($tgl_akhir));
+                    }
+                  ?>
+                </td>
+                <td></td>
                 <td>Waktu</td>
                 <td>:</td>
                 <td>
@@ -66,14 +88,14 @@
             <tbody>
               <?php  
               $no =1;
-              foreach ($rekapData as $rekap) {
+              foreach ($cetakData as $ctk) {
               ?>
               <tr>
                 <td><?php echo $no++ ?>.</td>
-                <td><?php echo $rekap->kode ?></td>
-                <td><?php echo $rekap->jenis ?></td>
-                <td><?php echo $rekap->jumlah ?></td>
-                <td><?php echo date('d-M-Y H:i',strtotime($rekap->createDate)) ?></td>
+                <td><?php echo $ctk->kode ?></td>
+                <td><?php echo $ctk->jenis ?></td>
+                <td><?php echo $ctk->jumlah ?></td>
+                <td><?php echo date('d-M-Y H:i',strtotime($ctk->createDate)) ?></td>
               </tr>
               <?php } ?>
             </tbody>
@@ -355,5 +377,6 @@
 <script>
     window.print();
 </script>
+
 </body>
 </html>

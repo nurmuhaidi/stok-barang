@@ -63,10 +63,6 @@
                     <a href="<?php echo base_url('index.php/admin/riwayat/delete/').$rwt->id; ?>" class="btn btn-danger btn-sm tombol-yakin" data-isiData="Ingin menghapus data ini!">
                       <i class="fa fa-trash"></i> Delete
                     </a>
-                    <!-- Tombol Edit -->
-                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $rwt->id ?>">
-                      <i class="fa fa-edit"></i> Edit
-                    </button>
                   </td>
                 </tr>
                 <?php } ?>
@@ -88,7 +84,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel"><div class="fa fa-print"></div> Cetak Data</h4>
         </div>
-        <form action="<?php echo base_url('index.php/admin/riwayat/rekap') ?>" method="GET">
+        <form action="<?php echo base_url('index.php/admin/riwayat/cetak') ?>" method="POST">
           <div class="modal-body">
             <div class="row">
                 <div class="col-md-6">
@@ -114,7 +110,7 @@
     </div>
   </div>
 
-  <!-- Modal Export Data -->
+  <!-- Modal Export Excel -->
   <div class="modal fade" id="exportExcel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -122,7 +118,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel"><div class="fa fa-download"></div> Export Excel</h4>
         </div>
-        <form action="<?php echo base_url('index.php/admin/riwayat/exportExcel') ?>" method="GET">
+        <form action="<?php echo base_url('index.php/admin/riwayat/exportExcel') ?>" method="POST">
           <div class="modal-body">
             <div class="row">
                 <div class="col-md-6">
@@ -147,49 +143,3 @@
       </div>
     </div>
   </div>
-
-  <!-- Modal Edit Data -->
-  <?php foreach ($riwayat as $rwt) { ?>
-    <div class="modal fade" id="edit<?= $rwt->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><div class="fa fa-edit"></div> Edit Data</h4>
-                </div>
-                <form action="<?php echo base_url('index.php/admin/riwayat/update') ?>" method="POST">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Kode</label>
-                                <input type="hidden" name="id" value="<?php echo $rwt->id; ?>">
-                                <input type="text" class="form-control" name="kode" value="<?= $rwt->kode ?>" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Jumlah</label>
-                                <input type="text" class="form-control" name="jumlah" value="<?= $rwt->jumlah ?>">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Jenis</label>
-                        <select class="form-control" name="jenis" required>
-                            <option value="<?= $rwt->jenis ?>"><?= $rwt->jenis ?></option>
-                            <option value="">-- Pilih Jenis --</option>
-                            <option value="Masuk">Masuk</option>
-                            <option value="Keluar">Keluar</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
-                    <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-  <?php } ?>

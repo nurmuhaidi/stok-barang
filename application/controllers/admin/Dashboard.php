@@ -14,6 +14,8 @@ class Dashboard extends CI_Controller {
     public function index()
     {
         $data['title'] = 'Dashboard';
+        $data['jumlahBarang'] = $this->m_model->get('tb_barang')->num_rows();
+        $data['jumlahPengguna'] = $this->m_model->get('tb_user')->num_rows();
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar');
         $this->load->view('admin/dashboard', $data);

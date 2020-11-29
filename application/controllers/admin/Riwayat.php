@@ -80,25 +80,39 @@ class Riwayat extends CI_Controller {
         redirect('index.php/admin/riwayat');
     }
 
-    public function rekap()
+    public function cetak()
     {
-        $tgl_awal = $this->input->get('tgl_awal');
-        $tgl_akhir = $this->input->get('tgl_akhir');
+        $tgl_awal   = $this->input->POST('tgl_awal');
+        $tgl_akhir  = $this->input->POST('tgl_akhir');
 
-        $data['title'] = 'Rekap Data';
-        $data['rekapData'] = $this->db->query("SELECT * FROM tb_riwayat WHERE createDate Between '".$tgl_awal."' AND '".$tgl_akhir."' ")->result();
+        $convertTglAwal = date('Y-m-d H:i:s', strtotime($tgl_awal . '00:01'));
+        $convertTglAkhir = date('Y-m-d H:i:s', strtotime($tgl_akhir . '23:59'));
 
-        $this->load->view('admin/rekapData', $data);
+        $data['tgl_awal']   = $tgl_awal;
+        $data['tgl_akhir']  = $tgl_akhir;
+
+        $data['title'] = 'Cetak Riwayat Barang';
+        $data['cetakData'] = $this->db->query("SELECT * FROM tb_riwayat WHERE createDate BETWEEN '".$convertTglAwal."' AND '".$convertTglAkhir."' ")->result();
+        $data['jumlah'] = $this->db->query("SELECT COUNT(id) AS jumlahData FROM tb_riwayat WHERE createDate BETWEEN '".$convertTglAwal."' AND '".$convertTglAkhir."' ")->result();
+
+        $this->load->view('admin/cetakRiwayatBarangCustom', $data);
     }
 
     public function exportExcel()
     {
-        $tgl_awal = $this->input->get('tgl_awal');
-        $tgl_akhir = $this->input->get('tgl_akhir');
+        $tgl_awal   = $this->input->POST('tgl_awal');
+        $tgl_akhir  = $this->input->POST('tgl_akhir');
 
-        $data['title'] = 'Rekap Data';
-        $data['rekapData'] = $this->db->query("SELECT * FROM tb_riwayat WHERE createDate Between '".$tgl_awal."' AND '".$tgl_akhir."' ")->result();
+        $convertTglAwal = date('Y-m-d H:i:s', strtotime($tgl_awal . '00:01'));
+        $convertTglAkhir = date('Y-m-d H:i:s', strtotime($tgl_akhir . '23:59'));
 
-        $this->load->view('admin/exportexcel', $data);
+        $data['tgl_awal']   = $tgl_awal;
+        $data['tgl_akhir']  = $tgl_akhir;
+
+        $data['title'] = 'Cetak Riwayat Barang';
+        $data['cetakData'] = $this->db->query("SELECT * FROM tb_riwayat WHERE createDate BETWEEN '".$convertTglAwal."' AND '".$convertTglAkhir."' ")->result();
+        $data['jumlah'] = $this->db->query("SELECT COUNT(id) AS jumlahData FROM tb_riwayat WHERE createDate BETWEEN '".$convertTglAwal."' AND '".$convertTglAkhir."' ")->result();
+
+        $this->load->view('admin/exportExcel', $data);
     }
 }
