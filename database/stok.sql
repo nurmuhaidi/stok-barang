@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2020 at 04:30 PM
+-- Generation Time: Nov 29, 2020 at 03:31 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -33,14 +33,6 @@ CREATE TABLE `tb_barang` (
   `stok` int(11) NOT NULL,
   `createDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_barang`
---
-
-INSERT INTO `tb_barang` (`id`, `kode`, `stok`, `createDate`) VALUES
-(1, '6010', 57, '2020-11-28 22:28:01'),
-(2, '6011', 22, '2020-11-28 22:28:18');
 
 -- --------------------------------------------------------
 
@@ -75,8 +67,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `createDate`) VALUES
-(1, 'Muhammad Ikhsanuddin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2020-11-28 18:27:38'),
-(2, 'Nur Muhaidi', 'muhaidi', 'e7e02bb35aa23f4b985fd3328f51b830', '2020-11-28 18:56:07');
+(1, 'Oscar Store', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2020-11-29 21:18:27');
 
 --
 -- Indexes for dumped tables
@@ -86,13 +77,15 @@ INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `createDate`) VALUE
 -- Indexes for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kode` (`kode`);
 
 --
 -- Indexes for table `tb_riwayat`
 --
 ALTER TABLE `tb_riwayat`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK01` (`kode`);
 
 --
 -- Indexes for table `tb_user`
@@ -108,7 +101,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_riwayat`
@@ -120,7 +113,17 @@ ALTER TABLE `tb_riwayat`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tb_riwayat`
+--
+ALTER TABLE `tb_riwayat`
+  ADD CONSTRAINT `FK01` FOREIGN KEY (`kode`) REFERENCES `tb_barang` (`kode`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
