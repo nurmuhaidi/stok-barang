@@ -33,6 +33,7 @@
                   <th>Kode Barang</th>
                   <th>Jenis</th>
                   <th>Jumlah</th>
+                  <th>Waktu</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -44,8 +45,17 @@
                 <tr>
                   <td><?php echo $no++ ?></td>
                   <td><?php echo $rwt->kode ?></td>
-                  <td><?php echo $rwt->jenis ?></td>
+                  <td>
+                    <?php
+                      if($rwt->jenis == 'Masuk'){
+                        echo '<div class="label label-success">'.$rwt->jenis.'</div>';
+                      } else {
+                        echo '<div class="label label-danger">'.$rwt->jenis.'</div>';
+                      }
+                    ?>
+                  </td>
                   <td><?php echo $rwt->jumlah ?></td>
+                  <td><?php echo date('d-M-Y H:i:s', strtotime($rwt->createDate)) ?></td>
                   <td>
                     <!-- Tombol Delete -->
                     <a href="" class="btn btn-danger btn-sm">

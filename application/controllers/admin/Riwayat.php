@@ -13,7 +13,7 @@ class Riwayat extends CI_Controller {
 
     public function index()
     {
-        $data['title'] = 'Riwayah';
+        $data['title'] = 'Riwayat';
         $data['riwayat'] = $this->m_model->get('tb_riwayat')->result();
 
         $this->load->view('admin/templates/header', $data);

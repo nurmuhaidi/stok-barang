@@ -55,7 +55,7 @@
                                             <div class="fa fa-plus-square"></div> Kelola
                                         </button>
                                         <!-- Tombol History -->
-                                        <a href="" class="btn btn-primary btn-sm">
+                                        <a href="<?php echo base_url('index.php/admin/barang/riwayat/').$brg->kode; ?>" class="btn btn-primary btn-sm">
                                             <div class="fa fa-history"></div> History
                                         </a>
                                         <!-- Tombol Delete -->
@@ -93,7 +93,7 @@
           <div class="modal-body">
             <div class="form-group">
                 <label>Kode Barang</label>
-                <input type="text" class="form-control" name="kode" placeholder="Kode Barang" required>
+                <input type="datetime" class="form-control" name="kode" placeholder="Kode Barang" required>
             </div>
             <div class="form-group">
                 <label>Sisa Stok</label>
@@ -140,20 +140,31 @@
     </div>
   <?php } ?>
 
-  <!-- Modal Edit Data -->
+  <!-- Modal Kelola Data -->
   <?php foreach ($barang as $brg) { ?>
     <div class="modal fade" id="kelola<?= $brg->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><div class="fa fa-edit"></div> Kelola Data</h4>
+                <h4 class="modal-title" id="myModalLabel"><div class="fa fa-plus-square"></div> Kelola Data</h4>
                 </div>
                 <form action="<?php echo base_url('index.php/admin/barang/insert_kelola') ?>" method="POST">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>Kode</label>
-                        <input type="text" class="form-control" name="kode" value="<?= $brg->kode ?>" readonly>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Kode</label>
+                                <input type="hidden" name="id" value="<?php echo $brg->id; ?>">
+                                <input type="text" class="form-control" name="kode" value="<?= $brg->kode ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sisa Stok</label>
+                                <input type="text" class="form-control" name="stok" value="<?= $brg->stok ?>" readonly>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Jenis</label>

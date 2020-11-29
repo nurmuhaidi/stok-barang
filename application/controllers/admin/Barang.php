@@ -40,9 +40,9 @@ class Barang extends CI_Controller {
         $createDate = date('Y-m-d H:i:s');
 
         $data = array(
-            'kode'      => $kode,
-            'stok'      => $stok,
-            'createDate' => $createDate
+            'kode'          => $kode,
+            'stok'          => $stok,
+            'createDate'    => $createDate
         );
 
         $this->m_model->insert($data, 'tb_barang');
@@ -53,19 +53,34 @@ class Barang extends CI_Controller {
     public function insert_kelola()
     {
         date_default_timezone_set('Asia/Jakarta');
+        $id         = $_POST['id'];
         $kode       = $_POST['kode'];
-        $jenis       = $_POST['jenis'];
-        $jumlah       = $_POST['jumlah'];
+        $stok       = $_POST['stok'];
+        $jenis      = $_POST['jenis'];
+        $jumlah     = $_POST['jumlah'];
         $createDate = date('Y-m-d H:i:s');
 
         $data = array(
-            'kode'      => $kode,
-            'jumlah'      => $jumlah,
-            'jenis'      => $jenis,
-            'createDate' => $createDate
+            'kode'          => $kode,
+            'jumlah'        => $jumlah,
+            'jenis'         => $jenis,
+            'createDate'    => $createDate
         );
 
+        $whereBarang = array('id' => $id);
+
+        if($jenis == 'Masuk') {
+            $hasil = array(
+                'stok' => $stok + $jumlah
+            );
+        } else {
+            $hasil = array(
+                'stok' => $stok - $jumlah
+            );
+        }
+
         $this->m_model->insert($data, 'tb_riwayat');
+        $this->m_model->update($whereBarang, $hasil, 'tb_barang');
         $this->session->set_flashdata('pesan', 'Data berhasil ditambahkan!');
         redirect('index.php/admin/barang');
     }
@@ -86,5 +101,19 @@ class Barang extends CI_Controller {
         $this->m_model->update($where, $data, 'tb_barang');
         $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
         redirect('index.php/admin/barang');
+    }
+
+    public function riwayat($kode)
+    {
+        $where = array('kode' => $kode);
+
+        $data['riwayat'] = $this->m_model->get_where($where, 'tb_riwayat')->result();
+
+        $data['kode'] = $kode;
+        $data['title'] = 'Riwayar Barang ' . $kode;
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/templates/sidebar');
+        $this->load->view('admin/riwayatBarang', $data);
+        $this->load->view('admin/templates/footer');
     }
 }
