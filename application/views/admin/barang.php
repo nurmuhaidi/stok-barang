@@ -23,9 +23,9 @@
         </div>
 
         <!-- Tombol Cetak Data -->
-        <button class="btn btn-primary" data-toggle="modal" data-target="#cetakData">
+        <a href="<?php echo base_url('index.php/admin/barang/printStokBarang') ?>" class="btn btn-primary">
             <div class="fa fa-print"></div> Cetak Data
-        </button>
+        </a>
 
         <!-- Tabel Data -->
         <div class="box box-danger" style="margin-top: 15px">

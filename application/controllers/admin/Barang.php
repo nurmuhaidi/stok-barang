@@ -110,10 +110,31 @@ class Barang extends CI_Controller {
         $data['riwayat'] = $this->m_model->get_where($where, 'tb_riwayat')->result();
 
         $data['kode'] = $kode;
-        $data['title'] = 'Riwayar Barang ' . $kode;
+        $data['title'] = 'Riwayat Barang ' . $kode;
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar');
         $this->load->view('admin/riwayatBarang', $data);
         $this->load->view('admin/templates/footer');
+    }
+
+    public function printStokBarang()
+    {
+       $data['barang'] = $this->m_model->get('tb_barang')->result();
+       $data['title'] = 'Cetak Stok Barang';
+
+       $this->load->view('admin/cetakStokBarang', $data);
+    }
+
+    public function printRiwayatBarang($kode)
+    {
+       $where = array('kode' => $kode);
+       $data['riwayat'] = $this->m_model->get_where($where, 'tb_riwayat')->result();
+
+       $data['jumlah'] = $this->m_model->get_where($where, 'tb_riwayat')->num_rows();
+
+       $data['title'] = 'Cetak Riwayat Stok Barang : ' . $kode;
+       $data['kode'] = $kode;
+
+       $this->load->view('admin/cetakRiwayatBarang', $data);
     }
 }

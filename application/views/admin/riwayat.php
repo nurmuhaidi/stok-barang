@@ -21,7 +21,9 @@
       <button class="btn btn-danger" data-toggle="modal" data-target="#cetakData">
         <div class="fa fa-print"></div> Cetak Data
       </button>
-
+      <button class="btn btn-success" data-toggle="modal" data-target="#exportExcel">
+        <i class="fa fa-download"></i> Export Excel
+      </button>
       <!-- Tabel Data -->
       <div class="box box-danger" style="margin-top: 15px">
         <div class="box-body">
@@ -58,11 +60,11 @@
                   <td><?php echo date('d-M-Y H:i:s', strtotime($rwt->createDate)) ?></td>
                   <td>
                     <!-- Tombol Delete -->
-                    <a href="" class="btn btn-danger btn-sm">
+                    <a href="<?php echo base_url('index.php/admin/riwayat/delete/').$rwt->id; ?>" class="btn btn-danger btn-sm tombol-yakin" data-isiData="Ingin menghapus data ini!">
                       <i class="fa fa-trash"></i> Delete
                     </a>
                     <!-- Tombol Edit -->
-                    <button type="button" class="btn btn-warning btn-sm">
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $rwt->id ?>">
                       <i class="fa fa-edit"></i> Edit
                     </button>
                   </td>
@@ -77,3 +79,118 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <!-- Modal Cetak Data -->
+  <div class="modal fade" id="cetakData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><div class="fa fa-print"></div> Cetak Data</h4>
+        </div>
+        <form action="<?php echo base_url('index.php/admin/barang/print') ?>" method="POST">
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tanggal awal</label>
+                        <input type="date" class="form-control" name="tgl_awal" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tanggal akhir</label>
+                        <input type="date" class="form-control" name="tgl_akhir" required>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
+            <button type="submit" class="btn btn-primary"><div class="fa fa-print"></div> Print</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Export Data -->
+  <div class="modal fade" id="exportExcel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><div class="fa fa-download"></div> Export Excel</h4>
+        </div>
+        <form action="<?php echo base_url('index.php/admin/barang/print') ?>" method="POST">
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tanggal awal</label>
+                        <input type="date" class="form-control" name="tgl_awal" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tanggal akhir</label>
+                        <input type="date" class="form-control" name="tgl_akhir" required>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
+            <button type="submit" class="btn btn-primary"><div class="fa fa-download"></div> Export</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Edit Data -->
+  <?php foreach ($riwayat as $rwt) { ?>
+    <div class="modal fade" id="edit<?= $rwt->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><div class="fa fa-edit"></div> Edit Data</h4>
+                </div>
+                <form action="<?php echo base_url('index.php/admin/riwayat/update') ?>" method="POST">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Kode</label>
+                                <input type="hidden" name="id" value="<?php echo $rwt->id; ?>">
+                                <input type="text" class="form-control" name="kode" value="<?= $rwt->kode ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Jumlah</label>
+                                <input type="text" class="form-control" name="stok" value="<?= $rwt->jumlah ?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis</label>
+                        <input type="hidden" name="id" value="<?php echo $rwt->id; ?>">
+                        <select class="form-control" name="jenis" required>
+                            <option value="<?= $rwt->jenis ?>"><?= $rwt->jenis ?></option>
+                            <option value="">-- Pilih Jenis --</option>
+                            <option value="Masuk">Masuk</option>
+                            <option value="Keluar">Keluar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
+                    <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  <?php } ?>

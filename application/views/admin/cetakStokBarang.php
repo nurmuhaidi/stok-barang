@@ -1,10 +1,81 @@
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0.0
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?php echo $title ?></title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="<?php echo base_url('assets') ?>/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url('assets') ?>/plugins/datatables/dataTables.bootstrap.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo base_url('assets') ?>/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="<?php echo base_url('assets') ?>/dist/css/skins/_all-skins.min.css">
+  <!-- Pace style -->
+  <link rel="stylesheet" href="<?php echo base_url('assets') ?>/plugins/pace/pace.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition">
+    <div class="container">
+        <!-- Judul Dokumen -->
+        <h1 style="text-align: center">Stok Barang</h1>
+
+        <table>
+            <tr>
+                <td width="100px">Dicetak Oleh</td>
+                <td width="15px">:</td>
+                <td> <?php echo $this->session->userdata('nama'); ?> </td>
+            </tr>
+            <tr>
+                <td>Waktu</td>
+                <td>:</td>
+                <td>
+                    <?php
+                        date_default_timezone_set('Asia/Jakarta');
+                        echo date('d-M-Y H:i:s');
+                    ?>
+                </td>
+            </tr>
+        </table>
+   
+        <!-- Tabel Data Barang -->
+        <table class="table table-bordered" style="margin-top: 15px">
+            <thead>
+                <tr>
+                    <th width="5px">No</th>
+                    <th>Kode Barang</th>
+                    <th>Sisa Stok</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $no = 1;
+                    foreach ($barang as $brg) {
+                ?>
+                    <tr>
+                        <td><?php echo $no++; ?></td>
+                        <td><?php echo $brg->kode; ?></td>
+                        <td><?php echo $brg->stok; ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+
     </div>
-    <strong>Copyright &copy; <?php echo date('Y') ?> <a href="https://shopee.co.id/muhaidi7499" target="blank">Oscar Store</a>.</strong> All rights
-    reserved.
-  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -275,6 +346,10 @@
       "autoWidth": false
     });
   });
+</script>
+
+<script>
+    window.print();
 </script>
 </body>
 </html>

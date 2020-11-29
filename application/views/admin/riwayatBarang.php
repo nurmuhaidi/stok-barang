@@ -21,10 +21,9 @@
                 <a href="<?php echo base_url('index.php/admin/barang') ?>" class="btn btn-success btn-sm">
                     <div class="fa fa-arrow-left"></div> Kembali
                 </a>
-                <button class="btn btn-primary btn-sm">
+                <a href="<?php echo base_url('index.php/admin/barang/printRiwayatBarang/').$kode ?>" class="btn btn-primary btn-sm">
                     <div class="fa fa-print"></div> Cetak Data
-                </button>
-               
+                </a>
             </div>
         </div>
         <div class="box-body">
