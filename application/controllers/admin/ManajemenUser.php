@@ -8,6 +8,10 @@ class ManajemenUser extends CI_Controller {
         parent::__construct();
         if(!$this->session->userdata('id')){
             redirect('index.php/welcome');
+        } else {
+            if($this->session->userdata('level') != 'Admin'){
+                redirect('index.php/user/dashboard');
+            }
         }
     }
 
@@ -27,10 +31,12 @@ class ManajemenUser extends CI_Controller {
         $nama       = $_POST['nama'];
         $username   = $_POST['username'];
         $password   = $_POST['password'];
+        $level      = $_POST['level'];
 
         $data = array(
             'nama'          => $nama,
             'username'      => $username,
+            'level'         => $level,
             'password'      => md5($password),
             'createDate'    => date('Y-m-d H:i:s')
         );

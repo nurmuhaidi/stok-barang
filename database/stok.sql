@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2020 at 03:31 PM
+-- Generation Time: Nov 30, 2020 at 04:08 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -59,6 +59,7 @@ CREATE TABLE `tb_user` (
   `nama` varchar(256) NOT NULL,
   `username` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
+  `level` varchar(16) NOT NULL,
   `createDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -66,8 +67,10 @@ CREATE TABLE `tb_user` (
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `createDate`) VALUES
-(1, 'Oscar Store', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2020-11-29 21:18:27');
+INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `level`, `createDate`) VALUES
+(1, 'Oscar Store', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', '2020-11-29 21:18:27'),
+(2, 'Nur Muhaidi', 'muhaidi', 'e7e02bb35aa23f4b985fd3328f51b830', 'User', '2020-11-30 21:34:00'),
+(3, 'Aji Prasetyo', 'aji', '8d045450ae16dc81213a75b725ee2760', 'User', '2020-11-30 21:59:04');
 
 --
 -- Indexes for dumped tables
@@ -113,7 +116,7 @@ ALTER TABLE `tb_riwayat`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

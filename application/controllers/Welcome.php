@@ -6,7 +6,11 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		if($this->session->userdata('id') != '' ){
-			redirect('index.php/admin/dashboard');
+			if($this->session->userdata('level') == 'Admin' ){
+				redirect('index.php/admin/dashboard');
+			} else {
+				$this->load->view('login');
+			}
 		} else {
 			$this->load->view('login');
 		}
@@ -31,12 +35,17 @@ class Welcome extends CI_Controller {
 					'nama' 			=> $dt->nama,
 					'username' 		=> $dt->username,
 					'password' 		=> $dt->password,
+					'level' 		=> $dt->level,
 					'createDate' 	=> $dt->createDate
 				);
 			}
 
 			$this->session->set_userdata($datauser);
-			redirect('index.php/admin/dashboard');
+			if($this->session->userdata('level') == 'Admin'){
+				redirect('index.php/admin/dashboard');
+			} else {
+				redirect('index.php/user/dashboard');
+			}
 		} else {
 			$this->session->set_flashdata('pesan', 'Username atau Password anda salah!');
 			redirect('index.php/welcome');

@@ -43,8 +43,13 @@
             </div>
             
             <div class="form-group">
+              <label>Level</label>
+              <input type="text" value="<?= $this->session->userdata('level') ?>" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
               <label>Terdaftar Pada</label>
-              <input type="text" name="terdaftar" value="<?= $this->session->userdata('createDate') ?>" class="form-control" placeholder="Username" readonly>
+              <input type="text" value="<?= date('d-M-Y H:i:s', strtotime($this->session->userdata('createDate'))) ?>" class="form-control" readonly>
             </div>
             
             <p>

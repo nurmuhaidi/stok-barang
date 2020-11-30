@@ -8,7 +8,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">User</li>
+        <li class="active">Manajemen User</li>
       </ol>
     </section>
 
@@ -40,6 +40,16 @@
                                 </li>
                                 <li class="list-group-item">
                                 <b>Password</b> <a class="pull-right">Disembunyikan</a>
+                                </li>
+                                <li class="list-group-item">
+                                <b>Level</b>
+                                  <?php 
+                                    if($usr->level == 'Admin') {
+                                      echo '<div class="label label-success pull-right"> <div class="fa fa-graduation-cap"> '.$usr->level.'</div>';
+                                    } else {
+                                      echo '<div class="label label-danger pull-right"> <div class="fa fa-users"> '.$usr->level.'</div>';
+                                    }
+                                  ?>
                                 </li>
                                 <li class="list-group-item">
                                 <b>Dibuat Pada</b> <a class="pull-right"><?php echo date('d-M-Y H:i:s', strtotime($usr->createDate)) ?></a>
@@ -88,6 +98,14 @@
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <label>Level</label>
+                <select name="level" class="form-control" required>
+                    <option value=""> -- Pilih Level -- </option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
             </div>
           </div>
           <div class="modal-footer">

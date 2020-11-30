@@ -8,6 +8,10 @@ class Riwayat extends CI_Controller {
         parent::__construct();
         if(!$this->session->userdata('id')){
             redirect('index.php/welcome');
+        } else {
+            if($this->session->userdata('level') != 'Admin'){
+                redirect('index.php/user/dashboard');
+            }
         }
     }
 
