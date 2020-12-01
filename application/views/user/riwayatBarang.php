@@ -14,15 +14,13 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="box box-danger">
+      <div class="box box-warning">
         <div class="box-header with-border">
-            <h3 class="box-title">Kode Barang : <?php echo $kode; ?></h3>
+            <h3 class="box-title">Kode Barang : <?php echo $kode ?></h3>
             <div class="pull-right btn-group">
-                <a href="<?php echo base_url('index.php/admin/barang') ?>" class="btn btn-success btn-sm">
+                <!-- Tombol Kembali -->
+                <a href="<?php echo base_url('index.php/user/barang') ?>" class="btn btn-warning btn-sm">
                     <div class="fa fa-arrow-left"></div> Kembali
-                </a>
-                <a href="<?php echo base_url('index.php/admin/barang/printRiwayatBarang/').$kode ?>" class="btn btn-primary btn-sm">
-                    <div class="fa fa-print"></div> Cetak Data
                 </a>
             </div>
         </div>

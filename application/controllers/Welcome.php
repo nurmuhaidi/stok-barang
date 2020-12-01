@@ -9,7 +9,7 @@ class Welcome extends CI_Controller {
 			if($this->session->userdata('level') == 'Admin' ){
 				redirect('index.php/admin/dashboard');
 			} else {
-				$this->load->view('login');
+				redirect('index.php/user/dashboard');
 			}
 		} else {
 			$this->load->view('login');

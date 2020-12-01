@@ -62,6 +62,7 @@
                   <li><a>Nama Lengkap <span class="pull-right badge bg-red"><?php echo $this->session->userdata('nama'); ?></span></a></li>
                   <li><a>Username <span class="pull-right badge bg-red"><?php echo $this->session->userdata('username'); ?></span></a></li>
                   <li><a>Password <span class="pull-right badge bg-red">Disembunyikan</span></a></li>
+                  <li><a>Level <span class="pull-right badge bg-red"><?php echo $this->session->userdata('level'); ?></span></a></li>
                   <li><a>Terdaftar Pada <span class="pull-right badge bg-red"><?php echo date('d-M-Y H:i:s', strtotime($this->session->userdata('createDate'))); ?></span></a></li>
                 </ul>
               </div>

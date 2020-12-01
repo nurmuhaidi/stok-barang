@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Login Administrator</title>
+<title>Login Pengguna</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -101,7 +101,7 @@ body {
 		<div class="avatar">
 			<img src="<?php echo base_url('assets/') ?>image/login/avatar.png" alt="Avatar">
 		</div>
-        <h2 class="text-center">Login Administrator</h2>
+        <h2 class="text-center">Login Pengguna</h2>
         <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('pesan') ?>"></div>
         <div class="form-group">
         	<input type="text" class="form-control" name="username" placeholder="Username" required>
