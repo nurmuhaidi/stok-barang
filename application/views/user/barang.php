@@ -53,14 +53,6 @@
                                         <a href="<?php echo base_url('index.php/user/barang/riwayat/').$brg->kode; ?>" class="btn btn-primary btn-sm">
                                             <div class="fa fa-history"></div> History
                                         </a>
-                                        <!-- Tombol Delete -->
-                                        <a href="<?php echo base_url('index.php/user/barang/delete/').$brg->id; ?>" class="btn btn-danger btn-sm tombol-yakin" data-isiData="Ingin menghapus data ini!">
-                                            <div class="fa fa-trash"></div> Delete
-                                        </a>
-                                        <!-- Tombol Edit -->
-                                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editData<?php echo $brg->id; ?>">
-                                            <div class="fa fa-edit"></div> Edit
-                                        </button>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -103,37 +95,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Modal Edit Data -->
-  <?php foreach ($barang as $brg) { ?>
-    <div class="modal fade" id="editData<?php echo $brg->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><div class="fa fa-edit"></div> Edit Data</h4>
-                </div>
-                <form action="<?php echo base_url('index.php/user/barang/update') ?>" method="POST">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Kode Barang</label>
-                        <input type="hidden" name="id" value="<?php echo $brg->id; ?>">
-                        <input type="text" class="form-control" name="kode" placeholder="Kode Barang" value="<?php echo $brg->kode; ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Sisa Stok</label>
-                        <input type="number" class="form-control" name="stok" placeholder="Sisa Stok" value="<?php echo $brg->stok; ?>" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
-                    <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> update</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-  <?php } ?>
 
   <!-- Modal Kelola Data -->
   <?php foreach ($barang as $brg) { ?>

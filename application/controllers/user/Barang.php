@@ -27,15 +27,6 @@ class Barang extends CI_Controller {
         $this->load->view('user/templates/footer');
     }
 
-    public function delete($id)
-    {
-        $where = array('id' => $id );
-
-        $this->m_model->delete($where, 'tb_barang');
-        $this->session->set_flashdata('pesan', 'Data berhasil dihapus!');
-        redirect('index.php/user/barang');
-    }
-
     public function insert()
     {
         date_default_timezone_set('Asia/Jakarta');
@@ -86,24 +77,6 @@ class Barang extends CI_Controller {
         $this->m_model->insert($data, 'tb_riwayat');
         $this->m_model->update($whereBarang, $hasil, 'tb_barang');
         $this->session->set_flashdata('pesan', 'Data berhasil ditambahkan!');
-        redirect('index.php/user/barang');
-    }
-
-    public function update()
-    {
-        $id     = $_POST['id'];
-        $kode   = $_POST['kode'];
-        $stok   = $_POST['stok'];
-
-        $data = array(
-            'kode' => $kode,
-            'stok' => $stok
-        );
-
-        $where = array('id' => $id);
-
-        $this->m_model->update($where, $data, 'tb_barang');
-        $this->session->set_flashdata('pesan', 'Data berhasil diubah!');
         redirect('index.php/user/barang');
     }
 
