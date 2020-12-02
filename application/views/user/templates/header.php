@@ -70,7 +70,7 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url('index.php/admin/profile') ?>" class="btn btn-default btn-flat">
+                  <a href="<?php echo base_url('index.php/user/profile') ?>" class="btn btn-default btn-flat">
                     <div class="fa fa-user"></div> Profile
                   </a>
                 </div>

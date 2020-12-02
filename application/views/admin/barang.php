@@ -55,7 +55,7 @@
                                             <div class="fa fa-plus-square"></div> Kelola
                                         </button>
                                         <!-- Tombol History -->
-                                        <a href="<?php echo base_url('index.php/admin/barang/riwayat/').$brg->kode; ?>" class="btn btn-primary btn-sm">
+                                        <a href="<?php echo base_url('index.php/admin/barang/riwayat/').$brg->id ; ?>" class="btn btn-primary btn-sm">
                                             <div class="fa fa-history"></div> History
                                         </a>
                                         <!-- Tombol Delete -->

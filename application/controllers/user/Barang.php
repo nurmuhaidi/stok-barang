@@ -80,14 +80,21 @@ class Barang extends CI_Controller {
         redirect('index.php/user/barang');
     }
 
-    public function riwayat($kode)
+    public function riwayat($id)
     {
-        $where = array('kode' => $kode);
+        $where = array('id' => $id);
 
-        $data['riwayat'] = $this->m_model->get_where($where, 'tb_riwayat')->result();
+        $ambilKode = $this->m_model->get_where($where, 'tb_barang')->result();
+        foreach ($ambilKode as $ablKd) {
+            $kodeBarang = $ablKd->kode;
+        }
 
-        $data['kode'] = $kode;
-        $data['title'] = 'Riwayat Barang ' . $kode;
+        $data['kode'] = $kodeBarang;
+        $whereKode = array('kode' => $kodeBarang);
+        $data['riwayat'] = $this->m_model->get_where($whereKode, 'tb_riwayat')->result();
+        $data['id'] = $id;
+        $data['title'] = 'Riwayat Barang : ' . $kodeBarang;
+        
         $this->load->view('user/templates/header', $data);
         $this->load->view('user/templates/sidebar');
         $this->load->view('user/riwayatBarang', $data);

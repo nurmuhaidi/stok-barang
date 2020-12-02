@@ -16,7 +16,14 @@
     <section class="content">
       <div class="box box-warning">
         <div class="box-header with-border">
-            <h3 class="box-title">Kode Barang : <?php echo $kode ?></h3>
+            <h3 class="box-title">
+                Kode Barang : <?php
+                $kode = $this->db->query("SELECT kode FROM tb_barang WHERE id = '".$id."' ")->result();
+                foreach ($kode as $kode_brg) {
+                    echo $kode_brg->kode;
+                }
+                ?>
+            </h3>
             <div class="pull-right btn-group">
                 <!-- Tombol Kembali -->
                 <a href="<?php echo base_url('index.php/user/barang') ?>" class="btn btn-warning btn-sm">

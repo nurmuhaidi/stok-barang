@@ -38,7 +38,14 @@
             <tr>
                 <td width="100px">Kode Barang</td>
                 <td width="15px">:</td>
-                <td> <?php echo $kode; ?> </td>
+                <td>
+                  <?php
+                  $kode = $this->db->query("SELECT kode FROM tb_barang WHERE id = '".$id."' ")->result();
+                  foreach ($kode as $kode_brg) {
+                      echo $kode_brg->kode;
+                  }
+                  ?>
+                </td>
                 <td width="50%"></td>
                 <td width="100px">Dicetak Oleh</td>
                 <td width="15px">:</td>

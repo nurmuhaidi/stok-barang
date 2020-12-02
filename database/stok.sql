@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2020 at 04:08 PM
+-- Generation Time: Dec 02, 2020 at 01:15 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_barang` (
   `id` int(11) NOT NULL,
-  `kode` varchar(16) NOT NULL,
+  `kode` varchar(256) NOT NULL,
   `stok` int(11) NOT NULL,
   `createDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,7 +42,7 @@ CREATE TABLE `tb_barang` (
 
 CREATE TABLE `tb_riwayat` (
   `id` int(11) NOT NULL,
-  `kode` varchar(16) NOT NULL,
+  `kode` varchar(256) NOT NULL,
   `jenis` varchar(16) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `createDate` datetime NOT NULL
@@ -68,9 +68,8 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `level`, `createDate`) VALUES
-(1, 'Oscar Store', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', '2020-11-29 21:18:27'),
-(2, 'Nur Muhaidi', 'muhaidi', 'e7e02bb35aa23f4b985fd3328f51b830', 'User', '2020-11-30 21:34:00'),
-(3, 'Aji Prasetyo', 'aji', '8d045450ae16dc81213a75b725ee2760', 'User', '2020-11-30 21:59:04');
+(1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', '2020-12-02 19:14:02'),
+(2, 'User', 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'User', '2020-12-02 19:14:02');
 
 --
 -- Indexes for dumped tables
@@ -116,7 +115,7 @@ ALTER TABLE `tb_riwayat`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

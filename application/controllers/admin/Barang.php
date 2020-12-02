@@ -107,14 +107,21 @@ class Barang extends CI_Controller {
         redirect('index.php/admin/barang');
     }
 
-    public function riwayat($kode)
+    public function riwayat($id)
     {
-        $where = array('kode' => $kode);
+        $where = array('id' => $id);
 
-        $data['riwayat'] = $this->m_model->get_where($where, 'tb_riwayat')->result();
+        $ambilKode = $this->m_model->get_where($where, 'tb_barang')->result();
+        foreach ($ambilKode as $ablKd) {
+            $kodeBarang = $ablKd->kode;
+        }
 
-        $data['kode'] = $kode;
-        $data['title'] = 'Riwayat Barang ' . $kode;
+        $data['kode'] = $kodeBarang;
+        $whereKode = array('kode' => $kodeBarang);
+        $data['riwayat'] = $this->m_model->get_where($whereKode, 'tb_riwayat')->result();
+        $data['id'] = $id;
+        $data['title'] = 'Riwayat Barang : ' . $kodeBarang;
+        
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar');
         $this->load->view('admin/riwayatBarang', $data);
@@ -129,16 +136,22 @@ class Barang extends CI_Controller {
        $this->load->view('admin/cetakStokBarang', $data);
     }
 
-    public function printRiwayatBarang($kode)
+    public function printRiwayatBarang($id)
     {
-       $where = array('kode' => $kode);
-       $data['riwayat'] = $this->m_model->get_where($where, 'tb_riwayat')->result();
+       $where = array('id' => $id);
 
-       $data['jumlah'] = $this->m_model->get_where($where, 'tb_riwayat')->num_rows();
+       $ambilKode = $this->m_model->get_where($where, 'tb_barang')->result();
+       foreach ($ambilKode as $ablKd) {
+        $kodeBarang = $ablKd->kode;
+       }
 
-       $data['title'] = 'Cetak Riwayat Stok Barang : ' . $kode;
-       $data['kode'] = $kode;
-
+       $data['kode'] = $kodeBarang;
+       $whereKode = array('kode' => $kodeBarang);
+       $data['riwayat'] = $this->m_model->get_where($whereKode, 'tb_riwayat')->result();
+       $data['jumlah'] = $this->m_model->get_where($whereKode, 'tb_riwayat')->num_rows();
+       $data['title'] = 'Cetak Riwayat Stok Barang : ' . $kodeBarang;
+       $data['id'] = $id;
+       
        $this->load->view('admin/cetakRiwayatBarang', $data);
     }
 }
