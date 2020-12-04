@@ -36,6 +36,11 @@
 
         <table>
             <tr>
+                <td width="100px">Jumlah</td>
+                <td width="15px">:</td>
+                <td> <?php echo $jumlahBarang; ?> </td>
+            </tr>
+            <tr>
                 <td width="100px">Dicetak Oleh</td>
                 <td width="15px">:</td>
                 <td> <?php echo $this->session->userdata('nama'); ?> </td>

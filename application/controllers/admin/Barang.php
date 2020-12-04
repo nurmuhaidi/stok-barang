@@ -131,6 +131,7 @@ class Barang extends CI_Controller {
     public function printStokBarang()
     {
        $data['barang'] = $this->m_model->get('tb_barang')->result();
+       $data['jumlahBarang'] = $this->m_model->get('tb_barang')->num_rows();
        $data['title'] = 'Cetak Stok Barang';
 
        $this->load->view('admin/cetakStokBarang', $data);

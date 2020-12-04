@@ -47,7 +47,18 @@
                             ?>
                                 <tr>
                                     <td><?php echo $no++; ?></td>
-                                    <td><?php echo $brg->kode; ?></td>
+                                    <td>
+                                        <?php 
+                                            echo $brg->kode; 
+
+                                            date_default_timezone_set('Asia/Jakarta');
+                                            $sekarang = date('Y-m-d');
+                                            $waktu = date('Y-m-d', strtotime($brg->createDate));
+                                            if ($sekarang == $waktu) {
+                                                echo '<div class="label label-success" style="margin-left: 5px;">New</div>';
+                                            }
+                                        ?>
+                                    </td>
                                     <td><?php echo $brg->stok; ?></td>
                                     <td>
                                         <!-- Tombol Kelola -->
@@ -132,7 +143,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
-                    <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> update</button>
+                    <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> Update</button>
                 </div>
                 </form>
             </div>
@@ -182,7 +193,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
-                    <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> simpan</button>
+                    <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> Save</button>
                 </div>
                 </form>
             </div>
