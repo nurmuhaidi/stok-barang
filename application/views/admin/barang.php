@@ -37,6 +37,7 @@
                                 <th width="5px">No</th>
                                 <th>Kode Barang</th>
                                 <th>Sisa Stok</th>
+                                <th>Kelola</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -61,10 +62,16 @@
                                     </td>
                                     <td><?php echo $brg->stok; ?></td>
                                     <td>
-                                        <!-- Tombol Kelola -->
-                                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#kelola<?= $brg->id ?>">
-                                            <div class="fa fa-plus-square"></div> Kelola
+                                        <!-- Tombol Kelola Masuk -->
+                                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#kelolaMasuk<?= $brg->id ?>">
+                                            <div class="fa fa-plus-square"></div> Stok Masuk
                                         </button>
+                                        <!-- Tombol Kelola Keluar-->
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#kelolaKeluar<?= $brg->id ?>">
+                                            <div class="fa fa-plus-square"></div> Stok Keluar
+                                        </button>
+                                    </td>
+                                    <td>
                                         <!-- Tombol History -->
                                         <a href="<?php echo base_url('index.php/admin/barang/riwayat/').$brg->id ; ?>" class="btn btn-primary btn-sm">
                                             <div class="fa fa-history"></div> History
@@ -151,14 +158,14 @@
     </div>
   <?php } ?>
 
-  <!-- Modal Kelola Data -->
+  <!-- Modal Kelola Stok Masuk -->
   <?php foreach ($barang as $brg) { ?>
-    <div class="modal fade" id="kelola<?= $brg->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="kelolaMasuk<?= $brg->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><div class="fa fa-plus-square"></div> Kelola Data</h4>
+                <h4 class="modal-title" id="myModalLabel"><div class="fa fa-plus-square"></div> Stok Masuk</h4>
                 </div>
                 <form action="<?php echo base_url('index.php/admin/barang/insert_kelola') ?>" method="POST">
                 <div class="modal-body">
@@ -167,6 +174,7 @@
                             <div class="form-group">
                                 <label>Kode</label>
                                 <input type="hidden" name="id" value="<?php echo $brg->id; ?>">
+                                <input type="hidden" name="jenis" value="Masuk">
                                 <input type="text" class="form-control" name="kode" value="<?= $brg->kode ?>" readonly>
                             </div>
                         </div>
@@ -178,13 +186,46 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Jenis</label>
-                        <input type="hidden" name="id" value="<?php echo $brg->id; ?>">
-                        <select class="form-control" name="jenis" required>
-                            <option value="">-- Pilih Jenis --</option>
-                            <option value="Masuk">Masuk</option>
-                            <option value="Keluar">Keluar</option>
-                        </select>
+                        <label>Jumlah</label>
+                        <input type="number" class="form-control" name="jumlah" placeholder="Jumlah" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
+                    <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  <?php } ?>
+
+  <!-- Modal Kelola Stok Keluar -->
+  <?php foreach ($barang as $brg) { ?>
+    <div class="modal fade" id="kelolaKeluar<?= $brg->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><div class="fa fa-plus-square"></div> Stok Keluar</h4>
+                </div>
+                <form action="<?php echo base_url('index.php/admin/barang/insert_kelola') ?>" method="POST">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Kode</label>
+                                <input type="hidden" name="id" value="<?php echo $brg->id; ?>">
+                                <input type="hidden" name="jenis" value="Keluar">
+                                <input type="text" class="form-control" name="kode" value="<?= $brg->kode ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sisa Stok</label>
+                                <input type="text" class="form-control" name="stok" value="<?= $brg->stok ?>" readonly>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Jumlah</label>
